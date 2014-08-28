@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+
+	<!-- メイン処理Socklet -->
+	<component	name  = "faist"
+				class = "jp.wda.faist.socklet.impl.MainSockletImpl">
+		<property   name="jserviceEncoding">"UTF-8"</property>
+		<initMethod name="registerService">
+			<arg>"pingpong"</arg>
+			<arg>"3dtseg3159kfrsbsdr32d3brd4a34sstn7154w7zf"</arg>
+			<arg><component class = "jp.wda.faist.jservice.sample.PingPongService" /></arg>
+		</initMethod>
+	</component>
+
+</components>

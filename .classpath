@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="distribute/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="distribute/lib/g2-extention.jar"/>
+	<classpathentry kind="lib" path="distribute/lib/g2-framework.jar" sourcepath="C:/var/prj/gpss/GPSS2/main/src/main/java">
+		<attributes>
+			<attribute name="source_encoding" value="MS932"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="distribute/classes"/>
+</classpath>

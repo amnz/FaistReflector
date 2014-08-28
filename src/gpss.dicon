@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<!DOCTYPE components PUBLIC "-//SEASAR2.1//DTD S2Container//EN"
+	"http://www.seasar.org/dtd/components21.dtd">
+<components>
+	<include path="faist.dicon"/>
+	
+	<!--
+	  *****************************************************************************************************************
+	  * 
+	  * ソケット待ち受けサーバ
+	  * 
+	  *****************************************************************************************************************
+	  -->
+
+	<component class="jp.wda.g2.extention.nio.NioSocketReactor">
+		<property      name="port">843</property>
+		
+		<initMethod    name="systemCommandAcceptFrom"><arg>"127.0.0.1"</arg></initMethod>
+		<initMethod    name="systemCommandRejectFrom"><arg>"*"</arg></initMethod>
+		
+		<initMethod    name="start"/>
+		<destroyMethod name="shutdown"/>
+	</component>
+	<component	class="jp.wda.g2.exception.UncaughtExceptionHandlerImpl" />
+
+	<component	class="jp.wda.g2.extention.nio.NioSocketProcessorFactory">
+		<property name="timeout">1800000</property>
+		<property name="defaultEncoding">"UTF-8"</property>
+	</component>
+	
+	<!--
+	  *****************************************************************************************************************
+	  * 
+	  * GPSS1互換Socklet配備用Socklet
+	  * 
+	  *****************************************************************************************************************
+	  -->
+	
+	<component class="jp.wda.g2.DefaultG1SockletDeployer">
+		
+		<initMethod name="allowDomain"><arg>"gpss.jpn.ph:9099"</arg></initMethod>
+		<initMethod name="allowDomain"><arg>"gpss.jpn.ph:843"</arg></initMethod>
+		
+		<initMethod name="acceptFrom"><arg>"127.0.0.1"</arg></initMethod>
+		<initMethod name="rejectFrom"><arg>"127.0.0.1"</arg></initMethod>
+		
+		<initMethod name="registerClientChecker"><arg>
+			<component	class="jp.wda.g2.security.IPAddressChecker">
+				<arg>"127.0.0.1"</arg>
+				<arg>@jp.wda.g2.security.ClientChecker@ACCEPT</arg>
+				<arg>@jp.wda.g2.security.ClientChecker@CHAIN</arg>
+			</component>
+		</arg></initMethod>
+		
+		<initMethod name="addChild"><arg>"faist"</arg></initMethod>
+	</component>
+	
+</components>
